@@ -10,6 +10,10 @@ class RegistrationView(generic.FormView):
     form_class = RegistrationForm
     success_url = reverse_lazy('accounts:login')
 
+    def form_valid(self, form):
+        form.save()
+        return super(RegistrationView, self).form_valid(form)
+
 
 class LoginView(generic.FormView):
     template_name = 'accounts/login.html'
