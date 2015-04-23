@@ -1,15 +1,9 @@
-from django import forms
-from accounts.models import User
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
-class RegistrationForm(forms.ModelForm):
-    # TODO Add password confirm field
-    class Meta:
-        model = User
-        fields = ['email', 'password']
+class RegistrationForm(UserCreationForm):
+    pass
 
 
-class LoginForm(forms.Form):
-    # TODO Copy/use authentication form from django.auth
-    email = forms.CharField()
-    password = forms.CharField()
+class LoginForm(AuthenticationForm):
+    pass
