@@ -1,6 +1,9 @@
 import os
 from django.core.urlresolvers import reverse_lazy
 
+def local_path(path):
+    return os.path.join(os.path.dirname(__file__), path)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'vvj&+a94!^+aa%2ghr#!2o*)kzn)bnl4m*!6zrab3(a2$l)!^0'
 DEBUG = True
@@ -25,6 +28,7 @@ INSTALLED_APPS = (
 
 GENERIC_APPS = (
     'authtools',
+    'pipeline',
 )
 
 LOCAL_APPS = (
@@ -93,8 +97,31 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = local_path('media/')
+
+STATIC_ROOT = local_path('static/')
+STATIC_URL = '/static/'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+
+
+# Django Pipeline
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+PIPELINE = True
+PIPELINE_AUTO = True
+PIPELINE_COMPILERS = (
+    'pipeline.compilers.less.LessCompiler',
+)
+
+PIPELINE_CSS = {
+    'dashboard': {
+        'source_filenames': (
+            'cowork/less/dashboard.less',
+        ),
+        'output_filename': 'cowork/less/dashboard.css'
+    }
+}

@@ -30,6 +30,7 @@ class LoginView(generic.FormView):
 
 class LogoutView(generic.RedirectView):
     url = reverse_lazy('admin:login')
+    permanent = False
 
     def get(self, request, *args, **kwargs):
         logout(request)

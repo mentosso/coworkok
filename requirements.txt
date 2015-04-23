@@ -1,2 +1,4 @@
 Django==1.8
 django-authtools==1.2.0
+django-pipeline==1.4.7
+futures==2.2.0
