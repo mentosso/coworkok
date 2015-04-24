@@ -35,11 +35,8 @@ class RegistrationView(generic.TemplateView):
         if user_form.is_valid():
             user = user_form.save(commit=False)
             if user.user_type == USER_TYPE_COMPANY:
-                print '1'
                 location_form.is_valid()
                 company_form.is_valid()
-                print location_form.errors
-                print company_form.errors
                 if company_form.is_valid() and location_form.is_valid():
                     company = company_form.save(commit=False)
                     user.save()
@@ -49,7 +46,6 @@ class RegistrationView(generic.TemplateView):
                     location = location_form.save(commit=False)
                     location.company = company
                     location.save()
-
                     forms_valid = True
             else:
                 forms_valid = True
