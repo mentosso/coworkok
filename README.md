@@ -19,20 +19,26 @@
 
 2. Extend Location model, add: address, postal code etc.
 
-3. Add geolocation fields and use [PostGIS](https://docs.djangoproject.com/en/1.8/ref/contrib/gis/install/postgis/) to setup search by location.
+4. Add searching for desk by city.
 
-4. Make location view more dynamic
+5. Add geolocation fields and use [PostGIS](https://docs.djangoproject.com/en/1.8/ref/contrib/gis/install/postgis/) to setup search by location.
 
-5. User should register before he order desk.
+6. Make location view more dynamic
 
-6. Add filtration so user can choose if he want to see all locations or only one with open desks.
+7. User should be able to rent a desk
+
+7. User should register before he rent desk.
+
+8. Add filtration so user can choose if he want to see all locations or only one with open desks.
 
 
 # Frontend:
 
 1. In index.html file there are two h2 elements they have 'index-header' class, modify it so text is centered both verticaly and horizontaly.
 
-2. ![alt tag](https://raw.githubusercontent.com/dook/coworkok/master/mockup.jpg)
+2. Arrange single searching result based on below mockup ![alt tag](https://raw.githubusercontent.com/dook/coworkok/master/mockup.jpg)
+
+3*. Create javascript dynamic searching of desks via AngularJS
 
 
 # Tests:
