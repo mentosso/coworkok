@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from accounts.forms import UserCreationForm, LoginForm
 from accounts.const import *
-from cowork.forms import CompanyCreationForm
+from cowork.forms import CompanyCreationForm, LocationCreationForm
 
 
 class RegistrationView(generic.TemplateView):
@@ -20,23 +20,36 @@ class RegistrationView(generic.TemplateView):
         context = self.get_context_data(**kwargs)
         user_form = UserCreationForm(prefix="user")
         company_form = CompanyCreationForm(prefix="company")
+        location_form = LocationCreationForm(prefix="location")
         context.update({'user_form': user_form,
-                        'company_form': company_form})
+                        'company_form': company_form,
+                        'location_form': location_form})
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
         user_form = UserCreationForm(request.POST, prefix="user")
         company_form = CompanyCreationForm(request.POST, prefix="company")
+        location_form = LocationCreationForm(request.POST, prefix="location")
         forms_valid = False
 
         if user_form.is_valid():
             user = user_form.save(commit=False)
             if user.user_type == USER_TYPE_COMPANY:
-                if company_form.is_valid():
+                print '1'
+                location_form.is_valid()
+                company_form.is_valid()
+                print location_form.errors
+                print company_form.errors
+                if company_form.is_valid() and location_form.is_valid():
                     company = company_form.save(commit=False)
                     user.save()
                     company.user = user
                     company.save()
+
+                    location = location_form.save(commit=False)
+                    location.company = company
+                    location.save()
+
                     forms_valid = True
             else:
                 forms_valid = True
@@ -49,7 +62,8 @@ class RegistrationView(generic.TemplateView):
 
         context = self.get_context_data(**kwargs)
         context.update({'user_form': user_form,
-                        'company_form': company_form})
+                        'company_form': company_form,
+                        'location_form': location_form})
         return self.render_to_response(context)
 
 

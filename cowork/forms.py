@@ -11,7 +11,7 @@ class CompanyCreationForm(forms.ModelForm):
         }
 
 
-class OfficeCreationForm(forms.ModelForm):
+class LocationCreationForm(forms.ModelForm):
     class Meta:
-        model = Office
-        fields = ('name', 'address', 'from_date', 'until_date', 'price')
+        model = Location
+        fields = ('city', 'total_desks', 'reserved_desks', 'price')
