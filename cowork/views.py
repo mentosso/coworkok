@@ -15,6 +15,7 @@ class DashboardView(mixins.UserMixin, LoginRequiredMixin, TemplateView):
             context['last_locations'] = models.Location.objects.filter(company__user=self.user)[:5]
         return context
 
+
 class SearchView(TemplateView):
     template_name = 'cowork/search.html'
 

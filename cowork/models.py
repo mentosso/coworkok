@@ -17,7 +17,7 @@ class Location(models.Model):
     city = models.CharField(max_length=200)
     total_desks = models.IntegerField(verbose_name='Total desks')
     reserved_desks = models.IntegerField(verbose_name='Reserved desks')
-    price = models.DecimalField(verbose_name='Price per desk',
+    price = models.DecimalField(verbose_name='Price per desk $',
         max_digits=12, decimal_places=2)
 
     def __unicode__(self):
