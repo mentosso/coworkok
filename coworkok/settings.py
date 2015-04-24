@@ -1,9 +1,6 @@
 import os
 from django.core.urlresolvers import reverse_lazy
 
-def local_path(path):
-    return os.path.join(os.path.dirname(__file__), path)
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'vvj&+a94!^+aa%2ghr#!2o*)kzn)bnl4m*!6zrab3(a2$l)!^0'
 DEBUG = True
@@ -11,6 +8,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Miscellaneous
+SITE_ID = 1
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = reverse_lazy('accounts:login')
 LOGIN_REDIRECT_URL = reverse_lazy('cowork:dashboard')
