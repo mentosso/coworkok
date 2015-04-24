@@ -14,3 +14,7 @@ class DashboardView(mixins.UserMixin, LoginRequiredMixin, TemplateView):
         if self.user.user_type == const.USER_TYPE_COMPANY:
             context['last_locations'] = models.Location.objects.filter(company__user=self.user)[:5]
         return context
+
+class SearchView(TemplateView):
+    template_name = 'cowork/search.html'
+
