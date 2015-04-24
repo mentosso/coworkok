@@ -32,7 +32,7 @@
 
 1. In index.html file there are two h2 elements they have 'index-header' class, modify it so text is centered both verticaly and horizontaly.
 
-2.
+2. ![alt tag](https://raw.githubusercontent.com/dook/coworkok/master/mockup.jpg)
 
 
 # Tests:
