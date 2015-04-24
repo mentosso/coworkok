@@ -9,24 +9,42 @@ class Company(models.Model):
     name = models.CharField(max_length=100)
     # And more... ;)
 
+    def __unicode__(self):
+        return self.name
 
-class Office(models.Model):
+
+class DatePriceMixin(models.Model):
+    from_date = models.DateTimeField()
+    until_date = models.DateTimeField()
+    price = models.DecimalField(max_digits=12, decimal_places=2)
+
+    class Meta:
+        abstract = True
+
+
+class Office(DatePriceMixin):
     company = models.ForeignKey('Company',
                                 related_name='offices')
     name = models.CharField(max_length=100)
     #geo = PointField(help_text=_("(longitude, latitude)"), null=True, blank=True) # TODO uncomment it when add posgres
     address = models.CharField(max_length=200)  # TODO mb separated model for this
 
+    def __unicode__(self):
+        return '%s %s %s' % (self.company, self.name, self.address)
 
-class Room(models.Model):
+
+class Room(DatePriceMixin):
     office = models.ForeignKey('Office',
                                related_name='rooms')
     number = models.IntegerField()
     name = models.CharField(max_length=100)  # optional
     metrage = models.IntegerField()
 
+    def __unicode__(self):
+        return '%s %s' % (self.office, self.name)
 
-class Desk(models.Model):
+
+class Desk(DatePriceMixin):
     room = models.ForeignKey('Room',
                              related_name='desks')
     actual_owner = models.OneToOneField('accounts.User',
@@ -39,5 +57,7 @@ class Desk(models.Model):
     length = models.IntegerField()
     height = models.IntegerField()
     color = models.IntegerField()  # Add mb color choices
-    price = models.IntegerField()  # In EUR/Hour  # TODO action set price to many desks
     # TODO add image mb
+
+    def __unicode__(self):
+        return '%s' % self.room
