@@ -123,10 +123,10 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'cowork/less/dashboard.css'
     },
-    'registration': {
+    'accounts': {
         'source_filenames': (
-            'accounts/less/registration.less',
+            'accounts/less/accounts.less',
         ),
-        'output_filename': 'accounts/less/registration.css'
+        'output_filename': 'accounts/less/accounts.css'
     }
 }

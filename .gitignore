@@ -65,3 +65,5 @@ target/
 #Static and media dirs
 /static/
 /media/
+
+runserver

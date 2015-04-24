@@ -10,10 +10,6 @@
       <a class="navbar-brand" href="{% url 'index' %}">CoWorkOK</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <div class="navbar-right">
-        <span class="navbar-text font-white">or</span>
-        <a href="{% url 'accounts:register' %}" class="btn btn-default navbar-btn">Sign up</a>
-      </div>
       <form method="post" action="{% url 'accounts:login' %}" class="navbar-form navbar-right">
         {% csrf_token %}
         <div class="form-group">
