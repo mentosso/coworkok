@@ -15,7 +15,7 @@
 
 # Backend:
 
-1. Extend Company model, for example add fields like: NIP, website.
+1. Extend Company model, for example add fields like: NIP, website, company logo (needs for other task).
 
 2. Extend Location model, add: address, postal code etc.
 
