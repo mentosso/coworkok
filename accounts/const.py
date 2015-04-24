@@ -7,6 +7,6 @@ USER_TYPES = (
 )
 
 USER_TYPE_CHOICES = (
-    (USER_TYPE_COWORKER, 'Co-working user'),
-    (USER_TYPE_COMPANY, 'Company offers co-working services')
+    (USER_TYPE_COWORKER, 'Searching desk'),
+    (USER_TYPE_COMPANY, 'Offers co-working services')
 )

@@ -1,12 +1,20 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm as UserForm
 from django.contrib.auth import get_user_model
 
 
-class RegistrationForm(UserCreationForm):
+class UserCreationForm(UserForm):
     class Meta:
         model = get_user_model()
-        fields = ("email",)
+        fields = ("email", "password1", "password2", "first_name", "last_name", "user_type")
 
 
 class LoginForm(AuthenticationForm):
-    pass
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.EmailInput(
+            attrs={'placeholder': 'Email',
+                   'class': 'form-control'})
+        self.fields['password'].widget.attrs.update({'placeholder': 'Password',
+                                                     'class': 'form-control'})

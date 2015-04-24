@@ -13,6 +13,7 @@ ALLOWED_HOSTS = []
 # Miscellaneous
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = reverse_lazy('accounts:login')
+LOGIN_REDIRECT_URL = reverse_lazy('cowork:dashboard')
 
 # Application definition
 
@@ -98,9 +99,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = local_path('media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_ROOT = local_path('static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -123,5 +124,11 @@ PIPELINE_CSS = {
             'cowork/less/dashboard.less',
         ),
         'output_filename': 'cowork/less/dashboard.css'
+    },
+    'registration': {
+        'source_filenames': (
+            'accounts/less/registration.less',
+        ),
+        'output_filename': 'accounts/less/registration.css'
     }
 }

@@ -10,6 +10,11 @@
     {% block css %}{% endblock %}
   </head>
   <body>
+      {% if request.user.is_authenticated %}
+        {% include "navbar/navbar_auth.html" %}
+      {% else %}
+        {% include "navbar/navbar_not_auth.html" %}
+      {% endif %}
       {% block header %}{% endblock %}
       {% block content %}{% endblock %}
       <hr>

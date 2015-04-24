@@ -1,14 +1,52 @@
 {% extends "base.html" %}
+{% load pipeline %}
+
+{% block css %}
+  {% stylesheet 'registration' %}
+{% endblock %}
 
 {% block content %}
-<div class="container">
+  <div class="container">
     <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-            <form method="POST">{% csrf_token %}
-                {{ form.as_ul }}
-                <input type="submit" value="Register" />
-            </form>
-        </div>
+      <div class="col-md-offset-3 col-md-6">
+        <form method="POST">
+          <h2>Please sign up</h2>
+          {% csrf_token %}
+          <ul id="user-form">
+            {{ user_form.as_ul }}
+          </ul>
+          <ul id="company-form">
+            {{ company_form.as_ul }}
+          </ul>
+          <button type="submit" class="btn btn-success">Sign up</button>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  <script>
+    var USER_TYPE_COWORKER = 0,
+        USER_TYPE_COMPANY  = 1;
+    var company_form = $('#company-form').first();
+    var user_type_select = $('#id_user-user_type').first();
+
+    function update_company_form(user_type_select){
+      if(user_type_select.find('option:selected').first().val()==USER_TYPE_COMPANY){
+        company_form.addClass('show_form');
+      }
+      else{
+        company_form.removeClass('show_form');
+      }
+    }
+
+    // Necessary for reload with form errors
+    update_company_form(user_type_select);
+
+    user_type_select.change(function(){
+      update_company_form($(this));
+    });
+  </script>
 {% endblock %}
