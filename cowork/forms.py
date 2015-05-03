@@ -5,13 +5,16 @@ from cowork.models import *
 class CompanyCreationForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ('name', )
+        fields = ('name', 'VAT_ID', 'website', 'company_logo')
         labels = {
-            'name': 'Company name'
+            'name': 'Company name',
+            'VAT_ID': 'VAT ID',
+            'website': 'Website',
+            'company_logo': 'Company logo'
         }
 
 
 class LocationCreationForm(forms.ModelForm):
     class Meta:
         model = Location
-        fields = ('city', 'total_desks', 'reserved_desks', 'price')
+        fields = ('city', 'address', 'postal_code', 'total_desks', 'reserved_desks', 'price')
